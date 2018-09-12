@@ -1,28 +1,16 @@
 require('babel-register')({
-  presets: [ 'env' ]
+  presets: [ 'env', 'es2017', 'stage-0' ]
 });
+require("babel-polyfill");
 const { port, env } = require('./config/vars');
 const express = require('express');
 let app = express();
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+const homeController = require('./controllers/scrape');
 
-// open mongoose connection
-const db = mongoose.connect('mongodb://localhost/tangle_sensor');
-/**
- * Controllers (route handlers).
- */
-const homeController = require('./controllers/home');
-// const userController = require('./controllers/user');
-// const apiController = require('./controllers/api');
-// const contactController = require('./controllers/contact');
-
-
-
-app.get('/', homeController.index);
+app.get('/scrape', homeController.scrapePageByCheckInOut, (req, res) => {
+  console.log(res);
+});
 
 // listen to request
 
