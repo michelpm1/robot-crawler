@@ -1,8 +1,7 @@
 {
-  "name": "tangle_smart_gas_sensor",
+  "name": "robot-crawler",
   "version": "0.0.1",
   "dependencies": {
-    "crawler": "^1.2.0",
     "dotenv-safe": "^6.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
