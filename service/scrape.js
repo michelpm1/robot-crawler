@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
 
 exports.scrapePageByCheckInOut = async (req, res) => {
-  const browser = await puppeteer.launch({headless: false});
+  const  {checkIn, checkOut} = req.body;
+  const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
   const url = `https://myreservations.omnibees.com/default.aspx?q=5462&version=MyReservation&
-  sid=1182a15b-900a-4684-84e1-6007a4cd0721#/&diff=false&CheckIn=${process.argv[2]}&CheckOut=${process.argv[3]}&Code=&group_code=&loyality_card=&NRooms=1&ad=1&ch=0&ag=-\ `;
+  sid=1182a15b-900a-4684-84e1-6007a4cd0721#/&CheckIn=${checkIn}&CheckOut=${checkOut}&diff=false&Code=&group_code=&loyality_card=&NRooms=1&ad=1&ch=0&ag=-\ `;
 
   await page.goto(url);
   await page.waitFor(6000);

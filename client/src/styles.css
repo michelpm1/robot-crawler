@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+a { color: white !important; }
+
+a:hover { color: gray !important; }
+
+.tittle {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.header-nav {
+    justify-content: space-evenly !important;
+}
+
+.default-table-1 {
+    text-align: center;
+    margin-top: 3rem;
+}
