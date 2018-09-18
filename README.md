@@ -45,6 +45,8 @@ After, go to your browser and navigate to:
 
 **localhost:3000**
 
+**OBS: To scrape data use the format DDMMYYYY example: 20102018**
+
 
  
 
