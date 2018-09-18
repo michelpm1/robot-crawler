@@ -43,7 +43,7 @@ yarn start
 ```
 After, go to your browser and navigate to:
 
-**localhost:3000/
+**localhost:3000/**
 
 
  
