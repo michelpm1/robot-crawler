@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Info from "../components/Info";
-import Scores from "../components/Scores";
+import ScrapeScreen from "../components/ScrapeScreen";
 import Header from "../components/Header";
 
 class ReactRouter extends React.Component {
@@ -10,7 +10,7 @@ class ReactRouter extends React.Component {
       <React.Fragment>
         <Header />
         <Route exact path="/" component={Info} />
-        <Route  path="/scores" component={Scores} />
+        <Route path="/scrape" component={ScrapeScreen} />
       </React.Fragment>
     );
   }

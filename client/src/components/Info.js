@@ -2,8 +2,8 @@ import React from "react";
 
 const Info = () => (
   <div className={'tittle'}>
-    <h1>Football App</h1>
-    <p className={'mt-3'}>Using this app you can check for the scores of related football competitions, to check just add the competition code at Scores tab and press search</p>
+    <h1>Scrape App</h1>
+    <p className={'mt-3'}>Using this app you can scrape rooms data, just go to scrape tab and scrape using this format (DDMMYYYY)</p>
   </div>);
 
 export default Info;

@@ -16,8 +16,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post('/scrape', scrapeService.scrapePageByCheckInOut, (req, res) => {
-  res.json('test');
+app.post('/scrape', scrapeService.scrapePageByCheckInOut, (req, res, next) => {
 });
 
 app.listen(port, () => console.info(`server started on port ${port} (${env})`));

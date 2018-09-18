@@ -4,7 +4,8 @@ import { isEmpty } from "lodash";
 import { warning, error } from "toastr";
 import { ClipLoader } from 'react-spinners';
 import 'toastr/build/toastr.css';
-class Scores extends React.PureComponent {
+import ScrapeTable from "./ScrapeTable";
+class ScrapeScreen extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ class Scores extends React.PureComponent {
       checkIn: '',
       checkOut: '',
       loading: false,
+      scrapedData: []
     };
   }
 
@@ -21,12 +23,9 @@ class Scores extends React.PureComponent {
 
     return axios({
       method: 'post',
-      url: 'http://localhost:3001/scrape',
+      url: 'http://localhost:3002/scrape',
       data: obj,
-      // headers: {
-      //   'Access-Control-Allow-Origin': '*',
-      // },
-    });
+    })
   };
 
   handleSubmit(event) {
@@ -40,13 +39,11 @@ class Scores extends React.PureComponent {
 
     if (checkIn && checkOut) {
       this.getRoomsByCheckInCheckout(jsonObj).then((result) => {
-        console.log(result);
+        this.setState({loading: false, scrapedData: result.data});
+        }).catch((err) => {
         this.setState({loading: false});
-        }//this.setState({scores: result.data})
-      ).catch((err) => {
-        error(err);
+        error(err.response.data.error);
       })
-
     } else {
       warning("Info. Please fill both the fields first");
       this.setState({loading: false});
@@ -56,12 +53,10 @@ class Scores extends React.PureComponent {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    //this.setState({checkIn: event.target.value});
   }
 
   render() {
-
-    const {checkIn, checkOut} = this.state;
+    const {checkIn, checkOut, scrapedData} = this.state;
 
     return (
       <div className="container">
@@ -75,7 +70,7 @@ class Scores extends React.PureComponent {
                     placeholder="Check-Out"></input>
           </div>
           <div className="col-xs-3 push-col">
-            <button className="btn btn-outline-secondary mt-3" value="Submit" type="submit">Please add a check-out date</button>
+            <button className="btn btn-outline-secondary mt-3" value="Submit" type="submit">Scrape!</button>
           </div>
         </form>
         <div className="row">
@@ -86,6 +81,7 @@ class Scores extends React.PureComponent {
               color={'#123abc'}
               loading={this.state.loading}
             />
+            {!isEmpty(scrapedData) && <ScrapeTable scrapedItens={scrapedData}/>}
           </div>
         </div>
       </div>
@@ -93,4 +89,4 @@ class Scores extends React.PureComponent {
   }
 }
 
-export default Scores;
+export default ScrapeScreen;
